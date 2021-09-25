@@ -107,9 +107,52 @@ use these two axioms to construct proofs of two theorems about equality:
 --> or.elim
 
 
+***Lecture 9***
+¬P "not P", means P is false
+- if a proposition is false, it means there are no proofs of it
+- assume --> is an implication
+
+- exact false.elim
+theorem false_elim (P : Prop) (f : false) : P :=
+begin
+  exact false.elim f,
+  or
+  case f,
+end
+
+
+
+***Lecture 5***
 
 
 
 
 
+***Lecture 9***
+example : false → true :=
+begin
+  assume f,
+  case h,
+  case h,
+  exact true.intro,
+end 
+
+example: true ¬ true :=
+begin
+  assume t,
+  case t,
+  exact true.intro,
+end
+
+example: false ¬ false :=
+begin
+  assume f,
+  case f,
+end
+
+ex false quod libet, "false implies anything"
+
+not true, not false, you don't have proof either way
+
+axiom true_or_not_true : ∀ (P : Prop), (P ∨ ¬P)
 -/
