@@ -156,3 +156,43 @@ not true, not false, you don't have proof either way
 
 axiom true_or_not_true : ∀ (P : Prop), (P ∨ ¬P)
 -/
+
+/-
+10/01/2021 Midterm Review
+
+
+
+to prove false
+1) variable of type false, exact 
+2) proof of false, apply false elimination on "a"
+3) two variables that that are obviously false 
+
+
+assumption applies exact to are variables and 
+
+exact takes a proof of what you're trying to prove
+
+
+exist.intro _ _ → exists.intro "what exists" "a proof"
+  i.e. exists.intro 1 eq.refl 1
+
+¬ _
+_ → false
+
+¬ is basically a implies statement
+
+
+
+
+∧ 
+Inference rules
+  and.intro p q
+  and.elim_left <p q> → p
+  and.elim_right <p q> → q
+∧ is communatative
+Theorem: ∀ ( P Q : Prop), P ∧ Q ↔ Q ∧ P
+
+
+
+
+-/
