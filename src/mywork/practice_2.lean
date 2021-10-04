@@ -93,9 +93,12 @@ begin
     apply and.elim Pqr,
     assume p qorr,
     apply or.intro_right,
-    apply or.elim qorr,
-    assume q,
-    apply and.intro p,
+    
+    --apply or.elim qorr,
+    --assume q,
+    --apply and.intro p,
+    
+
 
   --***incomplete***
 
@@ -115,8 +118,11 @@ begin
     assume qandr,
     apply and.elim qandr,
     assume q r,   
-  
-  --***incomplete***
+    sorry,
+    assume p,
+    sorry,
+    sorry,
+    sorry,
 end
 
 /- Assuming that P ∧ (P ∨ Q) and P and Q exist by the reflective property of if and 
@@ -151,10 +157,10 @@ begin
     assume p,
     exact p,
     assume pandq,
-    
-    
-   --***Incomplete***
-    
+    apply and.elim_left pandq,
+    assume p,
+    apply or.intro_left,
+    exact p,    
 end
 
 /- Assuming that P ∨ true and P and true exist by the reflective property of if and 

@@ -126,6 +126,7 @@ example :
     (∃ (b : Ball), Red b) → 
     (∃ (b : Ball), Red b ∨ Green b) := 
 begin
+
 end 
 
 /-
@@ -137,14 +138,25 @@ axioms
   (Nice : Person → Prop)
   (Likes : Person → Person → Prop)
 
+/-
+a person is a type --> a person existd
+nice is a function, given a person it'll 
+return that person is nice
+likes is a function that takes a person, 
+it'll return that that person likes that other person
+-/
 example : 
   (∃ (p1 : Person), ∀ (p2 : Person), Likes p2 p1) → 
   (∀ (e : Person), ∃ (s : Person), Likes e s) :=
+/-
+there exists a person p1 such that forall person p2, all person p2 likes p1
+forall person e, there exists a person s that they like
+-/
 begin
   assume h, 
-  cases h with person pf,
+  cases h with person1 pf,
   assume e,
-  apply exists.intro person,
+  apply exists.intro person1,
   exact (pf e),
 end
 
@@ -154,12 +166,16 @@ English language sentences.
 -/
 
 -- Everyone likes him or herself
+-- (∀ p : people), Likes p p
 
 -- Someone doesn't like him or herself
+-- (∃ p : person), ¬(Likes p p)
 
--- There is someone likes someone else
+-- There is someone who likes someone else
+-- (∃ p1 p2: person), Likes p1 p2
 
 -- No one likes anyone who dislikes them
+-- ¬(∃ p : person), ∀ (p2 : person), ¬ Nice p2 → LIkes p1 p2
 
 -- Everyone likes anyone who is nice
 
@@ -170,3 +186,21 @@ If everyone who's nice likes someone, then
 there is someone whom everyone who is nice 
 likes.
 -/
+-- ((∀ p1 : person), ∃ (p2 : person), Nice p1 → Likes p1 p2) → 
+-- ((∃ p1 : person), (∀ p2 : person), Nice p2 → Likes p2 p1)
+
+
+example: ∃ n : ℕ, n = 1 :=
+begin
+  exact exists.intro 1 (eq.refl 1),
+end
+
+example: ¬ (∀ p : Person, Likes p p) ↔ ∃ p : Person, ¬ Likes p p :=
+begin
+  have f := classical.em (∃ p : Person, ¬ Likes p p),
+  cases f,
+
+  --open classical,
+  --exact exists.intro p ¬(Likes p),
+
+end

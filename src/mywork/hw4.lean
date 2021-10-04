@@ -66,7 +66,6 @@ end
 theorem demorgan_1 : ∀ (P Q : Prop), ¬ (P ∧ Q) ↔ ¬ P ∨ ¬ Q :=
 begin
   assume P Q,
-  --
   apply iff.intro _ _,
     assume npandnq,
     have pornp := classical.em P,
@@ -75,16 +74,17 @@ begin
     have qornq := classical.em Q,
     apply or.elim (or.swap qornq),
     assume nq,
-
+    apply or.intro_right,
+    exact nq,
+    assume q,
+    apply or.intro_left,
+    assume p,
+    have f := np p,
+    exact f,
+    assume p,
+    apply or.intro_right,
+    assume q,
     
-
-    --cases qornq with q nq,
-    
-  --have pandq : P ∧ Q := and.intro p q,
-  
-  --have npandnq : ¬ (P ∧ Q) := classical.em pandq,
-
-  
 
   --***incomplete***
   
@@ -112,7 +112,7 @@ begin
   assume P Q,
   apply iff.intro _ _,
     have pornp := classical.em P,
-    have p : P := or.elim_right pornp,
+    have p : P := or.intro_right pornp,
     
     cases pornp with p np,
     have qornq := classical.em Q,
@@ -156,8 +156,37 @@ theorem distrib_and_or_foil :
   (P ∨ Q) ∧ (R ∨ S) ↔
   (P ∧ R) ∨ (P ∧ S) ∨ (Q ∧ R) ∨ (Q ∧ S) :=
 begin
-  assume P Q R S,
+  intros P Q R S,
   apply iff.intro _ _,
+    intros h,
+    apply and.elim h,
+    assume pOq rOs,
+    cases pOq,
+    exact p q,
+    cases rOs with r s,
+    have pAr : P ∧ R := and.intro p r,
+
+    have pAs : P ∧ S := and.intro p s,
+     
+
+    --apply or.elim pOq,
+    --assume p,
+    --apply or.elim pOq,
+    --apply or.elim rOs,
+    --assume r,
+
+    --apply or.intro_left _ _,
+    --apply and.intro p r,
+    --assume s,
+    --apply or.intro_left _ _,
+    
+    
+
+
+    --have pOq : P ∨ Q := and.elim_left h,
+    --have p : P := or.assoc pOq,
+    
+    /-
     have pornp := classical.em P,
     cases pornp with p np,
     have qornq := classical.em Q,
@@ -168,7 +197,7 @@ begin
     cases sorns with s ns,
     have porq : P ∨ Q := or.intro p q,
     have rors : R ∨ S := or.intro r s,
-
+    -/
 
 --***incomplete***
 end
@@ -178,11 +207,12 @@ end
 Formally state and prove the proposition that
 not every natural number is equal to zero.
 -/
-lemma not_all_nats_are_zero : ∀ ( n : ℕ) ¬(n = 0) := 
+lemma not_all_nats_are_zero : ¬ (∀ n : ℕ, n = 0) :=
 begin
   assume n, 
+  contradiction,
 
---***incomplete***
+  
 end 
 
 -- 11. equivalence of P→Q and (¬P∨Q)
@@ -191,19 +221,11 @@ begin
   assume P Q,
   apply iff.intro _ _,
     assume pimq,
-
-    --have pornp := classical.em P,
-    --apply or.elim (or.swap pornp),
-    --assume np,
-    --apply and.intro Q,
-    
-    --have qornq := classical.em Q,
-    --apply or.elim qornq,
-    --assume q,
-    --apply _ _,
+    assume p, 
+  
+    sorry,
   
 
---***incomplete***
 end
 
 -- 12
@@ -213,10 +235,7 @@ begin
   assume pimq,
   assume nq,
   assume p,
-  apply false.elim,
-  assume ?,
-
---***incomplete***
+  sorry,
 end
 
 -- 13
@@ -225,7 +244,6 @@ begin
   assume P Q,
   assume npimnq,
   assume q,
-
---***incomplete***
+  sorry,
 end
 
