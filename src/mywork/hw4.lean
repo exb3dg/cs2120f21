@@ -221,10 +221,9 @@ begin
   assume P Q,
   apply iff.intro _ _,
     assume pimq,
-    assume p, 
-  
     sorry,
-  
+    assume p, 
+    sorry,
 
 end
 
