@@ -120,6 +120,4 @@ and.intro   - and
 eq.refl    any object of any type is equal to itself
 
 
-- Proof: a false proposition has no proofs (else it'd be true!)
-
--/
+Proof: a false proposition has no proofs (else it'd be true!)

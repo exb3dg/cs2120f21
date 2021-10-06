@@ -1,5 +1,5 @@
 /- 
-*Lecture 1*
+*LECTURE 1*
 - Reasoning
 -- Inductive: derive generalized predictive models from given sets of observations
 -- Abductive: guess a hypothysis based on given information, test and adjust accordingly
@@ -49,7 +49,7 @@ for checking that proofs *truly* prove what they claim to prove.
 - applying an arguement (function: def) --> #reduce
 
 
-*Lecture 2*
+*LECTURE 2*
 - Equality 
 Equality is defined for all objects of all types
 by just two inference rules, which we accept as
@@ -116,8 +116,7 @@ begin
   rw e2,      -- eq.refl applied automatically
 end
 
-def rel_transitive :=
-  ∀ (x y z : T), (R x y) → (R y z) → (R x z)
+def rel_transitive := ∀ (x y z : T), (R x y) → (R y z) → (R x z)
 
 - INFERENCE RULE #1/2: EQUALITY IS REFLEXIVE
 axiom eq_refl  : 
@@ -125,8 +124,8 @@ axiom eq_refl  :
     (t : T),    -- and t is thing of that type, T
   t = t         -- the result type: proof of t = t
 
-def rel_reflexive := ∀ (x : T), (R x x)
-def rel_symmetric := ∀ (x y : T), (R x y) → (R y x)
+def rel_reflexive := ∀ (x : T), (R x x) *lean version eq.refl*
+def rel_symmetric := ∀ (x y : T), (R x y) → (R y x) *lean version eq.symm*
 
 - INFERENCE RULE #2/2: SUBSTITUTION OF EQUALS FOR EQUALS
 axiom eq_subst : 
@@ -139,6 +138,29 @@ axiom eq_subst :
 
 -- Lecture 2 also has theorems on eq_trans and eq_symm
 
+***LECTURE 4***
+- Review
+Equality is reflexive *lean version eq.refl*
+  axiom eq_refl  : 
+    ∀ (T : Type)  -- if T is any type (of thing)
+      (t : T),    -- and t is thing of that type, T
+    t = t         -- the result type: proof of t = t
+
+Substition of Equals for Equals *lean version eq.subst*
+  axiom eq_subst : 
+    ∀ (T : Type)      -- if T is a type
+      (P : T → Prop)  -- and P is a property of T objects
+      (x y : T)       -- and x and y are T objects
+      (e : x = y)     -- and you have a proof that x = y
+      (px : P x),     -- and you have a proof that x has property P
+    P y               -- then you can deduce (and get a proof) of P y
+
+-- substitution gives license to rewrite propositions
+
+-- Lecture 4 makes proofs of the axioms eq_tran and eq_symm
+
+***LECTURE 5***
+- Introduction and Elimination Rules
 
 
 
@@ -170,7 +192,16 @@ end
 
 
 ***Lecture 5***
+For ∀ x, P x (every x has property P)
+  - introduction rule: assume arbitrary x, then show P x
+  - elimination rule: *apply* a proof of ∀ x, P x, as a 
+  kind of function to a specific value of x, say k, to 
+  produce a proof of P k.
 
+For P → Q (if P is true then Q must also be true)
+- introduction rule: assume arbitrary P, then show Q
+- elimination rule: *apply* a proof of P → Q, as a
+- kind of function, to any proof of P to derive a proof of Q!
 
 
 

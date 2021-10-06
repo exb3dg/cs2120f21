@@ -38,7 +38,7 @@ with more interesting "return types".
 For P → Q (if P is true then Q must also be true)
 - introduction rule: assume arbitrary P, then show Q
 - elimination rule: *apply* a proof of P → Q, as a
-kind of function, to any proof of P to derive a proof of Q!
+- kind of function, to any proof of P to derive a proof of Q!
 -/
 
 def foo : ∀ (x : ℕ), x = 0 → x + 1 = 1 := 
