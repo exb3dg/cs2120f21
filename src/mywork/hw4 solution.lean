@@ -9,7 +9,7 @@ begin
   assume h,
   cases h,
 
-  -- or
+  -- OR
   --trivial,  
 
 end
@@ -19,12 +19,19 @@ end
 example : 0 ≠ 0 → 2 = 3 :=
 begin
   assume h,
-  have f : false := h (eq.refl 0),
-  exact false.elim (f),
+  have zeqz := eq.refl 0,
+  contradiction,
+
+   -- OR
+
+  --have f : false := h (eq.refl 0),
+  --exact false.elim (f),
+
 end
 
 -- 3
 example : ∀ (P : Prop), P → ¬¬P :=
+-- to prove ¬¬P, assume ¬P which is not true which is a contradiction 
 begin
   assume P,
   assume (p : P),
@@ -32,8 +39,13 @@ begin
   -- ¬P → false
   -- (P → false) → false
   assume h,
-  have f := h p,
-  exact f,
+  contradiction,
+
+  -- OR
+
+  -- have f := h p,
+  -- exact f,
+  
 end 
 
 -- We might need classical (vs constructive) reasoning 
@@ -58,7 +70,7 @@ theorem neg_elim : ∀ (P : Prop), ¬¬P → P :=
 begin
   assume P,
   assume h,
-  have pornp := classical.em P,
+  have pornp := classical.em P, --law of excluded middle classical.em
   cases pornp with p pn,
   assumption,
   contradiction,
@@ -67,14 +79,34 @@ end
 -- 5
 theorem demorgan_1 : ∀ (P Q : Prop), ¬ (P ∧ Q) ↔ ¬ P ∨ ¬ Q :=
 begin
-
+  assume  P Q,
+  split, -- OR apply iff.intro _ _,
+  -- forward
+  assume h, 
+  cases (classical.em P) with p np,
+  cases (classical.em Q) with q nq,
+  have pandq := and.intro p q,
+  contradiction,
+  exact or.inr nq, -- what is inr and inl
+  exact or.inl np,
+  -- backward
+  admit, -- if you know everything is true, i.e. you proved 
+  -- the forward and know the backward it true as well
 end
 
 
 -- 6
 theorem demorgan_2 : ∀ (P Q : Prop), ¬ (P ∨ Q) → ¬P ∧ ¬Q :=
+-- add examples when solving to understand proposition 
 begin
-
+  assume P Q,
+  assume h,
+  cases (classical.em P) with p np,
+  cases (classical.em Q) with q nq,
+  have porq := or.intro_left Q p,
+  contradiction,
+  cases(classical.em Q) with q nq,
+  
 end
 
 
