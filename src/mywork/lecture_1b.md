@@ -10,7 +10,7 @@ We do better on the whole when we act on what is _true_ than when we don't.
 - Important styles of reasoning include inductive, abductive, deductive.
   - Inductive:
     - The sun has always come up in the morning, so (generalizing from these observations leads one to predict that) it will come up again tomorrow, too.
-    - Idea: derive generalized predictive models from given sets of observations
+    - Idea: derive generalized predictive models from given sets of *observations*
       - choose/use a reasonable form of model (e.g., y = mx + b)
       - calibrate m and b coefficients to get a minimum-error fit of line to data - test model by using it to predict results for previously unseen inputs
       - measure model prediction errors (e.g., |predicted_price - selling_price|)
@@ -25,9 +25,9 @@ We do better on the whole when we act on what is _true_ than when we don't.
         - Problem was solved!
         - Hypothesis appears confirmed. (That's abductive reasoning.)
     - Based on whatever information you have or can get, *guess* a good hypothesis
-    - Test your hypothesis experimentally and adjust your trust in it accordingly
+    - Test your hypothesis experimentally and adjust your trust in it accordingly***
   - Deductive
-    - Assume that certain given propositions (axioms) are true (or have proofs)
+    - *Assume* that certain given propositions (axioms) are *true* (or have proofs)
     - Combine truths/proofs of smaller propositions into truths/proofs of bigger ones
     - Formal rules of inference define how truth or proof values can be combined
     - Examples:

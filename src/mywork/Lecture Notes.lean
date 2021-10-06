@@ -13,8 +13,7 @@
 
 - Reflexive Axiom of Equality
 -- every object, t, of every type, T, is equal to itself
-* lean
-∀ (T : Type) (t : T), t = t 
+* lean → ∀ (T : Type) (t : T), t = t 
 
 - Number Systems 
 ℕ: Natural numbers. The non-negative whole numbers. {0, 1, 2, ...}
@@ -36,39 +35,72 @@ example : 1 = 1 :=
   eq.refl 1 --> eq.refl 1 is an object that serves as proof of 1 = 1
 QED
 
+- Axioms, Propositions, Proofs
+-- Formal proof that 1 =1 
+example : 1 = 1 := 
+  eq.refl 1   -- Lean inferns T = ℕ from 1
+-- English proof
+Proof: By the reflexive property of equality 1 = 1
+
+-- Lean is not just for formalizing mathematics and logic, but 
+for checking that proofs *truly* prove what they claim to prove. 
 
 - QED, is short for quod est demonstratum, Latin for "it is shown."
-- applying an arguement --> #reduce
+- applying an arguement (function: def) --> #reduce
 
-***Look at quiz in the end of the lecture***
 
 *Lecture 2*
-INFERENCE RULE #1/2: EQUALITY IS REFLEXIVE
-axiom eq_refl  : 
-  ∀ (T : Type)  -- if T is any type (of thing)
-    (t : T),    -- and t is thing of that type, T
-  t = t         -- the result type: proof of t = t
+- Equality 
+Equality is defined for all objects of all types
+by just two inference rules, which we accept as
+axioms. 
+-- the axiom of the *reflexivity of equality* * Equality is a reflexive relation
+-- the axiom of the *substitutability of equals*
+use these two axioms to construct proofs of two theorems about equality:
+-- theorem: the equality relation is *symmetric*
+-- theorem: the equality relation is *transitive*
+ 
+- Propositions
+- A proposition is a claim that can be judged to be true or not.
+Example: CVille is a city in Virginia
+-- a false proposition has no proofs (else it'd be true!)
 
-INFERENCE RULE #2/2: SUBSTITUTION OF EQUALS FOR EQUALS
-axiom eq_subst : 
-  ∀ (T : Type)      -- if T is a type
-    (P : T → Prop)  -- and P is a property of T objects
-    (x y : T)       -- and x and y are T objects
-    (e : x = y)     -- and you have a proof that x = y
-    (px : P x),     -- and you have a proof that x has property P
-  P y               -- then you can deduce (and get a proof) of P y
+- Predicates 
+- ("function that takes values as arguments and returns a proposistion")
+A predicate is a parameterized proposition. In other words,
+it is a proposition with some *arguments*, which is to say,
+slots where you can fill in values of specified types.
+Predicate P: _X_ is a city in Virginia
+-- You can then *apply* either predicate,
+P or Q, to a string to get a resulting proposition.
+-- For example, (Q "Kevin") produces the proposition,
+Kevin Sullivan is from Charlottesville, while (e3 2)
+produces the proposition 2 = 3. 
 
-REFLEXIVITY OF EQUALITY
--- here's a formal definition of what it means for R to be reflexive
-def rel_reflexive := ∀ (x : T), (R x x)
+- Predicates as functions
+A predicate can be represented a exactly as a function
+i.e. def e3 (n : nat ) : Prop := n = 3
+-- the finction yields a proposition that the given n = 3
 
-def rel_symmetric := ∀ (x y : T), (R x y) → (R y x)
+- Using proofs of equality (elimination rulle)
+axiom of *substitutability* gives us a license to *rewrite* 
+propositions by replacing one term with another as long as 
+we can prove a proof of equality as an argument.
 
-def rel_transitive :=
-  ∀ (x y z : T), (R x y) → (R y z) → (R x z)
+``` lean
+axiom eq_subst :  
+  ∀ (T : Type)      
+    (P : T → Prop)  
+    (x y : T)       
+    (e : x = y)     
+    (px : P x),     
+  P y              
+```
+- Transitivity
+If x, y, and z are objects of some type, T, and we
+know (have proofs or axioms) that x = y and y = z,
+then we can deduce (and have a proof) that x = z.
 
-
-TRANSITIVITY OF EQUALITY
 theorem eq_trans : 
   ∀ (T : Type) 
     (x y z : T) 
@@ -84,16 +116,31 @@ begin
   rw e2,      -- eq.refl applied automatically
 end
 
-Equality is defined for all objects of all types
-by just two inference rules, which we accept as
-axioms. 
+def rel_transitive :=
+  ∀ (x y z : T), (R x y) → (R y z) → (R x z)
 
-- the axiom of the *reflexivity of equality*
-- the axiom of the *substitutability of equals*
-use these two axioms to construct proofs of two theorems about equality:
+- INFERENCE RULE #1/2: EQUALITY IS REFLEXIVE
+axiom eq_refl  : 
+  ∀ (T : Type)  -- if T is any type (of thing)
+    (t : T),    -- and t is thing of that type, T
+  t = t         -- the result type: proof of t = t
 
-- theorem: the equality relation is *symmetric*
-- theorem: the equality relation is *transitive*
+def rel_reflexive := ∀ (x : T), (R x x)
+def rel_symmetric := ∀ (x y : T), (R x y) → (R y x)
+
+- INFERENCE RULE #2/2: SUBSTITUTION OF EQUALS FOR EQUALS
+axiom eq_subst : 
+  ∀ (T : Type)      -- if T is a type
+    (P : T → Prop)  -- and P is a property of T objects
+    (x y : T)       -- and x and y are T objects
+    (e : x = y)     -- and you have a proof that x = y
+    (px : P x),     -- and you have a proof that x has property P
+  P y               -- then you can deduce (and get a proof) of P y
+
+-- Lecture 2 also has theorems on eq_trans and eq_symm
+
+
+
 
 *09/15/2021 Lecture 8*
 

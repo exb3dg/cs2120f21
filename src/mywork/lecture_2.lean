@@ -8,8 +8,8 @@ type, then you may have a proof of t = t "for free."
 
 axiom eq_refl  : 
   ∀ (T : Type)  -- if T is any type (of thing)
-    (t : T),    -- and t is thing of that type, T
-  t = t         -- the result type: proof of t = t
+    (t : T),   -- and t is thing of that type, T
+    t = t         -- the result type: proof of t = t
 
 /-
 Ok, you actually have to *apply* the axiom of reflexive equality. 

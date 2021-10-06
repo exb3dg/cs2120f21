@@ -2,7 +2,7 @@
 
 Equality is defined for all objects of all types
 by just two inference rules, which we accept as
-axioms. 
+axioms.
 
 - the axiom of the *reflexivity of equality*
 - the axiom of the *substitutability of equals*
@@ -27,7 +27,7 @@ If the relation in question is equality, then what
 it means for equality to be symmetric is that *if*
 x = y (for *any* x and y of any type), then y = x.
 
-By transitive, we mean that if x is related to y
+By *transitive*, we mean that if x is related to y
 and y is related to z, then (for any x, y, z, x is
 related to z in the given relation. For equality to
 be transitive, it must be that if x = y and y = z
@@ -35,15 +35,19 @@ then x = z.
 
 Example: Consider the friends relation on people
 in Facebook. Is it reflexive? symmetric? transitive?
+- relationship is symmetric
 
 Example: Consider the "has a crush on" relation
 on people. Is it reflexive? symmetric? Transitive?
+- relation is not symmetric or transitive
 
 Example: Consider the less than relation on
 natural numbers. Is it symmetric? Transitive?
+- relation is not symmetric or transitive
 
 Example: Consider the less than or equal relation
 on natural numbers. Is it Symmetric? Transitive?
+- relationship is symmetric
 
 ## The reflexivity of equality is an axiom
 
@@ -180,7 +184,7 @@ know that "x = y," then we can conclude that y + 2
 In other words, the second axiom gives us a license
 to *rewrite* propositions by replacing one term with
 another as long as we can prove a proof of equality
-as an argument. 
+as an argument.
 
 Here's the idea presented in the formal language
 of predicate logic.
