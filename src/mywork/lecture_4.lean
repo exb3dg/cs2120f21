@@ -54,10 +54,10 @@ CONJECTURES
 -- Note: Prop is the type of all propositions in Lean
 -- And each proposition is itself a type: of it proofs
 def eq_symm : Prop := 
-  ∀ (T : Type) 
-    (x y : T), 
-    x = y → 
-    y = x 
+  ∀ (T : Type) -- for all T of type Type 
+    (x y : T), -- for objects x and y of Type T
+    x = y →    -- x = y and
+    y = x      -- y -x
 
 -- We define eq_trans formally in the same basic way
 def eq_trans : Prop := 
@@ -133,9 +133,9 @@ example : ∀ (T : Type), ∀ (x y z : T), x = y → y = z → z = x :=
 begin
   /-
   assume T,
-  assume (x :T),
-  assume (y :T),
-  assume (z :T),
+  assume (x :T ),
+  assume (y : T),
+  assume (z : T),
   assume h1,
   assume h2,
   rw h1,
@@ -145,8 +145,6 @@ begin
   assume h1 h2,
   apply eq.symm _, 
   apply eq.trans h1 h2,
-
-
 
 end
 

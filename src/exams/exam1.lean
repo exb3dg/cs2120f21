@@ -40,17 +40,19 @@ Complete the definition of the elimination
 rule for →.
 
 (P Q : Prop) (p2q : P → Q) (p : P)
-----------------------------------
-     [replace with answer]
+---------------------------------- → elim
+     q : Q
 -/
 
 -- Give a formal proof of the following
 example : ∀ (P Q : Prop) (p2q : P → Q) (p : P), Q :=
 begin
-  _
+  assume P Q p2q p,
+  apply p2q p,
 end
 
 -- Extra credit [2 points]. Who invented this principle?
+-- *look up*
 
 
 
@@ -72,7 +74,7 @@ inference rule notation.
 Give a brief English language explanation of
 the introduction rule for true.
 
--- answer here
+-- answer here *need*
 
 ELIMINATION
 
@@ -87,7 +89,7 @@ there's no use for an elimination rule.
 
 -- Give a formal proof of the following:
 
-example : true := _
+example : true := true.intro
 
 
 -- -------------------------------------
@@ -105,16 +107,31 @@ introduction rule for ∧.
 ---------------------------- intro
         (pq : P ∧ Q)
 
-Given an English language description of
+Give an English language description of
 this inference rule. What does it really
 say, in plain simple English. 
 
--- answer here
+In English: Given propositions, P and Q, 
+and you have an object p with proposition P 
+and an object q with proposition Q, you 
+have propostions P and Q.
+
 
 ELIMINATION
 
-Given the elimination rules for ∧ in both
+Give the elimination rules for ∧ in both
 inference rule and English language forms.
+-/
+/-
+(P Q : Prop) (pq : P ∧ Q)
+------------------------- ∧ elim (left)
+          p : P
+*english*
+
+(P Q : Prop) (pq : P ∧ Q)
+------------------------- ∧ elim (right)
+          q : Q
+*english*
 -/
 
 /-
@@ -122,7 +139,13 @@ Formally state and prove the theorem that,
 for any propositions P and Q,  Q ∧ P → P. 
 -/
 
-example : _ := _
+example: ∀ (P Q : Prop), Q ∧ P → P := 
+begin
+  assume P Q qAp,
+  apply and.elim qAp,
+  assume q p,
+  exact p,
+end
 
 
 -- -------------------------------------
