@@ -270,7 +270,8 @@ Inference rules
 ∧ is communatative
 Theorem: ∀ ( P Q : Prop), P ∧ Q ↔ Q ∧ P
 
-
+***LECTURE 14***
 
 
 -/
+

@@ -197,10 +197,26 @@ end
 
 example: ¬ (∀ p : Person, Likes p p) ↔ ∃ p : Person, ¬ Likes p p :=
 begin
-  have f := classical.em (∃ p : Person, ¬ Likes p p),
-  cases f,
-
-  --open classical,
-  --exact exists.intro p ¬(Likes p),
+  apply iff.intro _ _,
+    assume h,
+    have f := classical.em (∃ p : Person, ¬ Likes p p),
+    cases f,
+    -- case #1
+    assumption,
+    -- case #2
+    -- propose new fact
+    have contra : ∀ (p : Person), Likes p p := _,
+    contradiction,
+    assume p,
+    
+    have g := classical.em (Likes p p),
+    cases g, 
+    assumption,
+    have a : ∃ (p : Person), ¬Likes p p := exists.intro p g,
+    contradiction,
+    -- backward
+    assume h, 
+    cases h with p t,
+    
 
 end

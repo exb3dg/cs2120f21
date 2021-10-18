@@ -246,3 +246,14 @@ begin
   sorry,
 end
 
+example : ∀ (P Q : Prop), ( ¬P → ¬Q) → (Q → P) :=
+begin
+  assume P Q h,
+  cases (em P) with p np,
+  assume q,
+  assumption,
+  assume q,
+  have nq := h np,
+  contradiction,
+end
+
